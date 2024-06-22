@@ -52,41 +52,80 @@ class _DashboardState extends State<Dashboard> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("KARACHI",style: TextStyle(fontSize:20),),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  Text("${_currentTemperature}",style: TextStyle(
-                    fontSize: 80
-                  ),),
-                  Padding(
-                    padding: const EdgeInsets.all(22),
-                    child: Icon(Icons.circle_outlined),
-                  )
-                ],
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Containerwidget(
-                    image: "assets/images/temp.png",
-                    name:"Temperature",
-                    materialApp: GaussianDistributed(),
-                  ),Containerwidget(
-                    image: "assets/images/temp.png",
-                    name:"Temperature",
-                    materialApp: NormalDistributed(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("KARACHI",style: TextStyle(fontSize:20),),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("${_currentTemperature}",style: TextStyle(
+                              fontSize: 80
+                          ),),
+                          Padding(
+                            padding: const EdgeInsets.all(22),
+                            child: Icon(Icons.circle_outlined),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  Divider(),
+                  Text("VIEW PREDICTIONS",textAlign: TextAlign.center,),
+                  Divider(),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Temperature",
+                        materialApp: GaussianDistributed(),
+                      ),Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Temperature",
+                        materialApp: NormalDistributed(),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Temperature",
+                        materialApp: GaussianDistributed(),
+                      ),Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Temperature",
+                        materialApp: NormalDistributed(),
+                      ),
+                    ],
+                  ),SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Temperature",
+                        materialApp: GaussianDistributed(),
+                      ),Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Temperature",
+                        materialApp: NormalDistributed(),
+                      ),
+                    ],
                   ),
                 ],
-              )
-            ],
+              ),
+            ),
           ),
         ),
-      ),
+
     );
   }
 }
