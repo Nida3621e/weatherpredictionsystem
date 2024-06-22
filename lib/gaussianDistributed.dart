@@ -6,29 +6,12 @@ import 'package:http/http.dart' as http;
 import 'package:sparkline/sparkline.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class GaussianDistributed extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Weather Forecast',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: WeatherForecastPage(),
-    );
-  }
+  _GaussianDistributedState createState() => _GaussianDistributedState();
 }
 
-class WeatherForecastPage extends StatefulWidget {
-  @override
-  _WeatherForecastPageState createState() => _WeatherForecastPageState();
-}
-
-class _WeatherForecastPageState extends State<WeatherForecastPage> {
+class _GaussianDistributedState extends State<GaussianDistributed> {
   String _city = 'Karachi';
   double _averageTemperature = 0.0;
   List<double> _temperatureHistory = [];
