@@ -86,7 +86,7 @@ class _DashboardState extends State<Dashboard> {
                         materialApp: GaussianDistributed(),
                       ),Containerwidget(
                         image: "assets/images/temp.png",
-                        name:"Temperature",
+                        name:"Wind speed/direction",
                         materialApp: NormalDistributed(),
                       ),
                     ],
@@ -97,11 +97,11 @@ class _DashboardState extends State<Dashboard> {
                     children: [
                       Containerwidget(
                         image: "assets/images/temp.png",
-                        name:"Temperature",
+                        name:"Pressure",
                         materialApp: GaussianDistributed(),
                       ),Containerwidget(
                         image: "assets/images/temp.png",
-                        name:"Temperature",
+                        name:"Dew point",
                         materialApp: NormalDistributed(),
                       ),
                     ],
@@ -111,11 +111,11 @@ class _DashboardState extends State<Dashboard> {
                     children: [
                       Containerwidget(
                         image: "assets/images/temp.png",
-                        name:"Temperature",
+                        name:"Cloud",
                         materialApp: GaussianDistributed(),
                       ),Containerwidget(
                         image: "assets/images/temp.png",
-                        name:"Temperature",
+                        name:"Humidity",
                         materialApp: NormalDistributed(),
                       ),
                     ],
