@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:weatherpredictionsystems/HumidityForecastScreen.dart';
+import 'package:weatherpredictionsystems/cloud_cover.dart';
 import 'dart:convert';
 
 import 'package:weatherpredictionsystems/containerWidget.dart';
@@ -53,99 +54,80 @@ class _DashboardState extends State<Dashboard> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "KARACHI",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${_currentTemperature}",
-                          style: TextStyle(fontSize: 80),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(22),
-                          child: Icon(Icons.circle_outlined),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                Divider(),
-                Text(
-                  "VIEW PREDICTIONS",
-                  textAlign: TextAlign.center,
-                ),
-                Divider(),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Containerwidget(
-                      image: "assets/images/temp.png",
-                      name: "Temperature",
-                      materialApp: GaussianDistributed(),
-                    ),
-                    Containerwidget(
-                      image: "assets/images/temp.png",
-                      name: "Wind speed/direction",
-                      materialApp: NormalDistributed(),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Containerwidget(
-                      image: "assets/images/temp.png",
-                      name: "Pressure",
-                      materialApp: GaussianDistributed(),
-                    ),
-                    Containerwidget(
-                      image: "assets/images/temp.png",
-                      name: "Dew point",
-                      materialApp: NormalDistributed(),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Containerwidget(
-                      image: "assets/images/temp.png",
-                      name: "Cloud",
-                      materialApp: GaussianDistributed(),
-                    ),
-                    Containerwidget(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("KARACHI",style: TextStyle(fontSize:20),),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("${_currentTemperature}",style: TextStyle(
+                              fontSize: 80
+                          ),),
+                          Padding(
+                            padding: const EdgeInsets.all(22),
+                            child: Icon(Icons.circle_outlined),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  Divider(),
+                  Text("VIEW PREDICTIONS",textAlign: TextAlign.center,),
+                  Divider(),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Temperature",
+                        materialApp: GaussianDistributed(),
+                      ),Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Wind speed/direction",
+                        materialApp: NormalDistributed(),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Pressure",
+                        materialApp: GaussianDistributed(),
+                      ),Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Dew point",
+                        materialApp: NormalDistributed(),
+                      ),
+                    ],
+                  ),SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Containerwidget(
+                        image: "assets/images/temp.png",
+                        name:"Cloud",
+                        materialApp: MyApp(),
+                      ),Containerwidget(
                       image: "assets/images/humidity.jpg",
                       name: "Humidity",
                       materialApp: HumidityForecast(),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                )
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
+
     );
   }
 }
