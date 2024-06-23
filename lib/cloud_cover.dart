@@ -28,51 +28,53 @@ class PredictionForm extends StatefulWidget {
 }
 
 class _PredictionFormState extends State<PredictionForm> {
-  final _formKey = GlobalKey<FormState>();
-  final _iterationsController = TextEditingController();
+
   List<String> days = [];
   var current1=0;
-  String day = '';
+
   List<double> _dailyPredictions = [];
   bool _isLoading = false;
   String currentDate= '';
   String currentTime= '';
+  //here
+  String day1='';
+  DateTime now=DateTime.now();
+
+
+
+@override
 
   @override
   Widget build(BuildContext context) {
+  day1 = DateFormat('EEEE').format(now);
+  currentDate = DateTime.now().toString().substring(0,10);
+  currentTime=DateTime.now().toString().substring(10,19);
+  String day='';
+  day=day1;
+  for (int i = 0; i < 7; i++) {
+  DateTime nextDay = now.add(Duration(days: i));
+  String day2 = DateFormat('EEEE').format(nextDay);
+  days.add(day2);
+  }
     return Scaffold(
       appBar: AppBar(
         title: Text('Cloud Cover',style: TextStyle(
-          color: Colors.white
+          color: Colors.blue
         ),),
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[100],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            // Form(
-            //   key: _formKey,
-            //   child: TextFormField(
-            //     controller: _iterationsController,
-            //     decoration: InputDecoration(labelText: 'Number of Iterations'),
-            //     keyboardType: TextInputType.number,
-            //     validator: (value) {
-            //       if (value == null || value.isEmpty) {
-            //         return 'Please enter a number';
-            //       }
-            //       return null;
-            //     },
-            //   ),
-            // ),
+
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // if (_formKey.currentState!.validate()) {
-                // _predictCloudCover(int.parse(_iterationsController.text));
+
                 _predictCloudCover();
-                // }
+
               },
               child: Text('CLOUD COVER PREDICTION USING MONTE CARLO'),
             ),
@@ -80,13 +82,13 @@ class _PredictionFormState extends State<PredictionForm> {
             Text('City: Karachi',style: TextStyle(
                 fontSize: 20
             ),),
-            Text(' $day',style: TextStyle(
+            Text('Day : $day',style: TextStyle(
                 fontSize: 16
             ),),
-            Text(' $currentDate',style: TextStyle(
+            Text('Date : $currentDate',style: TextStyle(
                 fontSize: 16
             ),),
-            Text(' $currentTime',style: TextStyle(
+            Text('Time :  $currentTime',style: TextStyle(
                 fontSize: 16
             ),),
 
@@ -111,10 +113,9 @@ class _PredictionFormState extends State<PredictionForm> {
                       belowBarData: BarAreaData(show: false),
                     ),
                   ],
-                  minX: 0,
-                  maxX: 6,
-                  minY: 0,
-                  maxY: 100,
+
+                  maxX: _dailyPredictions.length.toDouble()-1,
+
                   titlesData: FlTitlesData(
                     bottomTitles: AxisTitles(
                       sideTitles: SideTitles(
@@ -174,29 +175,11 @@ class _PredictionFormState extends State<PredictionForm> {
       final data = jsonDecode(response.body);
       final hourlyData = data['hourly']['cloud_cover'] as List;
       final current=data['current']['cloud_cover'];
-      DateTime now=DateTime.now();
-      String day1 = DateFormat('EEEE').format(now);
 
-      setState(() {
         current1=current;
-        currentDate = DateTime.now().toString().substring(0,10);
-        currentTime=DateTime.now().toString().substring(10,19);
-        day=day1;
 
-        for (int i = 0; i < 7; i++) {
-          DateTime nextDay = now.add(Duration(days: i));
-          String day2 = DateFormat('EEEE').format(nextDay);
-          days.add(day2);
-        }
-
-
-
-
-      });
       print(current);
       print(hourlyData);
-
-
 
       List<double> dailyData =
       hourlyData.take(24).map((e) => (e as num).toDouble()).toList();
