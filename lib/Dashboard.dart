@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:weatherpredictionsystems/cloud_cover.dart';
 import 'dart:convert';
 
 import 'package:weatherpredictionsystems/containerWidget.dart';
@@ -109,10 +110,11 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      //cloud......cover
                       Containerwidget(
                         image: "assets/images/temp.png",
                         name:"Cloud",
-                        materialApp: GaussianDistributed(),
+                        materialApp: MyApp(),
                       ),Containerwidget(
                         image: "assets/images/temp.png",
                         name:"Humidity",
