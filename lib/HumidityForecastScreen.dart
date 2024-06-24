@@ -23,6 +23,7 @@ class _HumidityForecastState extends State<HumidityForecast> {
   double _historicalStdDev = 0.0;
   List<double> results = [];
   List<double> averageHumidityPoints = [];
+  List<String> dateLabels = [];
 
   Future<void> _fetchWeatherData(double latitude, double longitude) async {
     final apiUrl =
@@ -55,8 +56,8 @@ class _HumidityForecastState extends State<HumidityForecast> {
               humidities.map<double>((temp) => temp.toDouble()).toList();
           _historicalMean = mean;
           _historicalStdDev = stdDev;
-          print(variance);
           print(_historicalMean);
+          print(variance);
           print(_historicalStdDev);
         });
       } else {
@@ -109,6 +110,8 @@ class _HumidityForecastState extends State<HumidityForecast> {
   void runSimulations(
       double currentHumid, int simulationsCount, double stdDev) {
     averageHumidityPoints.clear(); // Clear previous simulation results
+    dateLabels.clear(); // Clear previous date labels
+    DateTime now = DateTime.now();
     // Run Simulations for next 7 days
     for (int day = 0; day < 7; day++) {
       results.clear();
@@ -116,6 +119,8 @@ class _HumidityForecastState extends State<HumidityForecast> {
         results.add(simulateHumidity(currentHumid, stdDev));
       }
       averageHumidityPoints.add(calculateAverage(results));
+      dateLabels
+          .add(DateFormat('EEEE, MMM d').format(now.add(Duration(days: day))));
     }
   }
 
@@ -196,7 +201,7 @@ class _HumidityForecastState extends State<HumidityForecast> {
                                                       "assets/images/humidLogo.png"))),
                                           Column(
                                             children: [
-                                              Text("Day${i + 1}"),
+                                              Text(dateLabels[i]),
                                               Text(
                                                   '${averageHumidityPoints[i].toStringAsFixed(2)}%'),
                                             ],

@@ -12,7 +12,7 @@ class WeatherHomePage extends StatefulWidget {
 class _WeatherHomePageState extends State<WeatherHomePage> {
   ApiService apiService = ApiService();
   List<double>? predictions;
-  String cityName = "Berlin";
+  String cityName = "Karachi";
   double? averagePressure;
   bool isLoading = false;
 
@@ -89,6 +89,8 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
+                  Text('City: $cityName', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 16),
                   Text('Average Surface Pressure: ${averagePressure?.toStringAsFixed(2)} hPa', style: TextStyle(fontSize: 18)),
                   SizedBox(height: 16),
                 ],
