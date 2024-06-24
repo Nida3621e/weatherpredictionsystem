@@ -100,6 +100,7 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      
                       Containerwidget(
                         image: "assets/images/temp.png",
                         name:"Pressure",

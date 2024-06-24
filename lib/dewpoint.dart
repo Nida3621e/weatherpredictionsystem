@@ -246,6 +246,7 @@ class _DewPointForecastState extends State<DewPointForecast> {
       0.8,
       0.7
     ],
+    
   colors: [
       Colors.blue[50]!,
       Color.fromARGB(255, 193, 224, 250)!,
