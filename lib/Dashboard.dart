@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:weatherpredictionsystems/HumidityForecastScreen.dart';
+import 'package:weatherpredictionsystems/cloud_cover.dart';
 import 'dart:convert';
 
 import 'package:weatherpredictionsystems/containerWidget.dart';
@@ -16,10 +18,10 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   double _latitude = 24.8608;
   double _longitude = 67.0104;
-  double _currentTemperature=0.0;
+  double _currentTemperature = 0.0;
 
   Future<void> _fetchWeatherData(double latitude, double longitude) async {
-    final apiUrl=
+    final apiUrl =
         'https://api.open-meteo.com/v1/forecast?latitude=$_latitude&longitude=$_longitude&current=temperature_2m';
 
     try {
@@ -110,14 +112,14 @@ class _DashboardState extends State<Dashboard> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Containerwidget(
-                        image: "assets/images/temp.png",
+                        image: "assets/images/cloudpic1.jpg",
                         name:"Cloud",
-                        materialApp: GaussianDistributed(),
+                        materialApp: MyApp(),
                       ),Containerwidget(
-                        image: "assets/images/temp.png",
-                        name:"Humidity",
-                        materialApp: NormalDistributed(),
-                      ),
+                      image: "assets/images/humidity.jpg",
+                      name: "Humidity",
+                      materialApp: HumidityForecast(),
+                    ),
                     ],
                   ),
                 ],

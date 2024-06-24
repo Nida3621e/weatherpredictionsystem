@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:weatherpredictionsystems/Dashboard.dart';
 import 'package:weatherpredictionsystems/gaussianDistributed.dart';
 
-
 void main() {
   runApp(MyApp());
 }
