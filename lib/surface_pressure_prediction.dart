@@ -73,46 +73,38 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Weather Prediction for $cityName'),
+        title: Text('Weather Prediction'),
       ),
       body: Center(
-        child: isLoading
-            ? CircularProgressIndicator()
-            : predictions == null
-            ? ElevatedButton(
-          onPressed: fetchAndSimulate,
-          child: Text('Start Simulation'),
-        )
-            : Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Text('Average Surface Pressure: ${averagePressure?.toStringAsFixed(2)} hPa', style: TextStyle(fontSize: 18)),
-                  SizedBox(height: 16),
-                ],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'City: $cityName',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            ),
-            Expanded(
-              child: ListView.builder(
+              SizedBox(height: 10),
+              Text('Average Surface Pressure: ${averagePressure?.toStringAsFixed(2)} hPa', style: TextStyle(fontSize: 18)),
+              SizedBox(height: 20),
+              Expanded(child: ListView.builder(
                 itemCount: predictions!.length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text('Day ${index + 1}: ${predictions![index].toStringAsFixed(2)} hPa'),
                   );
                 },
-              ),
-            ),
-            Center(
-              child: ElevatedButton(
-                  onPressed: navigateToGraphPage,
-                  child: Text('Generate graph'),
-                )
-            )
-          ],
+              )),
+              ElevatedButton(
+                    onPressed: navigateToGraphPage,
+                    child: Text('Generate graph'),
+                  )
+            ],
+          ),
         ),
-      ),
+      )
+
     );
   }
 }
