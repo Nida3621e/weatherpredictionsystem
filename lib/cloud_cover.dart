@@ -170,7 +170,7 @@ class _PredictionFormState extends State<PredictionForm> {
 
   Future<List<double>> fetchData() async {
     final url =
-        'https://api.open-meteo.com/v1/forecast?latitude=24.8608&longitude=67.0104&current=cloud_cover&hourly=cloud_cover&past_days=1&forecast_days=1';
+        'https://api.open-meteo.com/v1/forecast?latitude=24.8608&longitude=67.0104&current=cloud_cover&hourly=cloud_cover&past_days=15&forecast_days=1';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
@@ -184,7 +184,7 @@ class _PredictionFormState extends State<PredictionForm> {
       print(hourlyData);
 
       List<double> dailyData =
-      hourlyData.take(24).map((e) => (e as num).toDouble()).toList();
+      hourlyData.take(360).map((e) => (e as num).toDouble()).toList();
 
       return dailyData;
     } else {
@@ -202,7 +202,8 @@ class _PredictionFormState extends State<PredictionForm> {
       var dailyData = await fetchData();
       print("first daily data"+'${dailyData}');
 
-      for (int day = 0; day < 8; day++) {
+      for (int day = 0; day < 8; day++)
+      {
         //daily results array or list
         List<double> dailyResults = [];
         Random random = Random();
