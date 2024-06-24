@@ -5,6 +5,7 @@ import 'package:weatherpredictionsystems/cloud_cover.dart';
 import 'dart:convert';
 
 import 'package:weatherpredictionsystems/containerWidget.dart';
+import 'package:weatherpredictionsystems/dewpoint.dart';
 import 'package:weatherpredictionsystems/gaussianDistributed.dart';
 import 'package:weatherpredictionsystems/normalDistributed.dart';
 
@@ -102,9 +103,10 @@ class _DashboardState extends State<Dashboard> {
                         name:"Pressure",
                         materialApp: GaussianDistributed(),
                       ),Containerwidget(
-                        image: "assets/images/temp.png",
+                        image: "assets/images/dewlogo.png",
+
                         name:"Dew point",
-                        materialApp: NormalDistributed(),
+                        materialApp: DewPointForecast(),
                       ),
                     ],
                   ),SizedBox(height: 20,),
