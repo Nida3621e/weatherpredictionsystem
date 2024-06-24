@@ -112,7 +112,7 @@ class _DashboardState extends State<Dashboard> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Containerwidget(
-                        image: "assets/images/temp.png",
+                        image: "assets/images/cloudpic1.jpg",
                         name:"Cloud",
                         materialApp: MyApp(),
                       ),Containerwidget(

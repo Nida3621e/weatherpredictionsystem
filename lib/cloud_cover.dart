@@ -51,7 +51,7 @@ class _PredictionFormState extends State<PredictionForm> {
   currentTime=DateTime.now().toString().substring(10,19);
   String day='';
   day=day1;
-  for (int i = 0; i < 7; i++) {
+  for (int i = 0; i < 8; i++) {
   DateTime nextDay = now.add(Duration(days: i));
   String day2 = DateFormat('EEEE').format(nextDay);
   days.add(day2);
@@ -136,6 +136,8 @@ class _PredictionFormState extends State<PredictionForm> {
                               return Text(days[5].substring(0,3));
                             case 6:
                               return Text(days[6].substring(0,3));
+                            case 7:
+                              return Text(days[0].substring(0,3));
                             default:
                               return Text('');
                           }
@@ -200,7 +202,7 @@ class _PredictionFormState extends State<PredictionForm> {
       var dailyData = await fetchData();
       print("first daily data"+'${dailyData}');
 
-      for (int day = 0; day < 7; day++) {
+      for (int day = 0; day < 8; day++) {
         //daily results array or list
         List<double> dailyResults = [];
         Random random = Random();
@@ -244,7 +246,7 @@ class _PredictionFormState extends State<PredictionForm> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               SizedBox(height: 10),
-              Text('Predicted Cloud Cover for 7 Days:'),
+              Text('Predicted Cloud Cover for next 7 Days:'),
               for (int i = 0; i < dailyPredictions.length; i++)
                 Text(days[i]+': ${dailyPredictions[i].toStringAsFixed(2)}%'),
             ],
