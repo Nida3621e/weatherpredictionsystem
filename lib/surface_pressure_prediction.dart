@@ -73,7 +73,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Weather Prediction for $cityName'),
+        title: Text('Weather Prediction'),
       ),
       body: Center(
         child: isLoading
