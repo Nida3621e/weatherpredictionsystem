@@ -3,9 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:weatherpredictionsystems/WindSpeedForecasting.dart';
 import 'package:weatherpredictionsystems/HumidityForecastScreen.dart';
 import 'package:weatherpredictionsystems/cloud_cover.dart';
+import 'package:weatherpredictionsystems/surface_pressure_prediction.dart';
 import 'dart:convert';
 
 import 'package:weatherpredictionsystems/containerWidget.dart';
+import 'package:weatherpredictionsystems/dewpoint.dart';
 import 'package:weatherpredictionsystems/gaussianDistributed.dart';
 import 'package:weatherpredictionsystems/normalDistributed.dart';
 
@@ -98,14 +100,16 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      
                       Containerwidget(
                         image: "assets/images/temp.png",
                         name:"Pressure",
-                        materialApp: GaussianDistributed(),
+                        materialApp: WeatherHomePage(),
                       ),Containerwidget(
-                        image: "assets/images/temp.png",
+                        image: "assets/images/dewlogo.png",
+
                         name:"Dew point",
-                        materialApp: NormalDistributed(),
+                        materialApp: DewPointForecast(),
                       ),
                     ],
                   ),SizedBox(height: 20,),
