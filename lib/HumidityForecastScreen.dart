@@ -56,8 +56,8 @@ class _HumidityForecastState extends State<HumidityForecast> {
               humidities.map<double>((temp) => temp.toDouble()).toList();
           _historicalMean = mean;
           _historicalStdDev = stdDev;
-          print(variance);
           print(_historicalMean);
+          print(variance);
           print(_historicalStdDev);
         });
       } else {

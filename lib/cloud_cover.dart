@@ -51,7 +51,7 @@ class _PredictionFormState extends State<PredictionForm> {
   currentTime=DateTime.now().toString().substring(10,19);
   String day='';
   day=day1;
-  for (int i = 0; i < 7; i++) {
+  for (int i = 0; i < 8; i++) {
   DateTime nextDay = now.add(Duration(days: i));
   String day2 = DateFormat('EEEE').format(nextDay);
   days.add(day2);
@@ -136,6 +136,8 @@ class _PredictionFormState extends State<PredictionForm> {
                               return Text(days[5].substring(0,3));
                             case 6:
                               return Text(days[6].substring(0,3));
+                            case 7:
+                              return Text(days[0].substring(0,3));
                             default:
                               return Text('');
                           }
@@ -168,21 +170,20 @@ class _PredictionFormState extends State<PredictionForm> {
 
   Future<List<double>> fetchData() async {
     final url =
-        'https://api.open-meteo.com/v1/forecast?latitude=24.8608&longitude=67.0104&current=cloud_cover&hourly=cloud_cover&past_days=1&forecast_days=1';
+        'https://api.open-meteo.com/v1/forecast?latitude=24.8608&longitude=67.0104&current=cloud_cover&hourly=cloud_cover&past_days=14&forecast_days=1';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       final hourlyData = data['hourly']['cloud_cover'] as List;
       final current=data['current']['cloud_cover'];
-
         current1=current;
 
       print(current);
       print(hourlyData);
 
       List<double> dailyData =
-      hourlyData.take(24).map((e) => (e as num).toDouble()).toList();
+      hourlyData.take(336).map((e) => (e as num).toDouble()).toList();
 
       return dailyData;
     } else {
@@ -200,7 +201,8 @@ class _PredictionFormState extends State<PredictionForm> {
       var dailyData = await fetchData();
       print("first daily data"+'${dailyData}');
 
-      for (int day = 0; day < 7; day++) {
+      for (int day = 0; day < 8; day++)
+      {
         //daily results array or list
         List<double> dailyResults = [];
         Random random = Random();
@@ -244,7 +246,7 @@ class _PredictionFormState extends State<PredictionForm> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               SizedBox(height: 10),
-              Text('Predicted Cloud Cover for 7 Days:'),
+              Text('Predicted Cloud Cover for next 7 Days:'),
               for (int i = 0; i < dailyPredictions.length; i++)
                 Text(days[i]+': ${dailyPredictions[i].toStringAsFixed(2)}%'),
             ],
