@@ -25,9 +25,10 @@ class _GaussianDistributedState extends State<GaussianDistributed> {
 
   Future<void> _fetchWeatherData(double latitude, double longitude) async {
     final apiUrl =
-        'https://archive-api.open-meteo.com/v1/archive?latitude=24.8608&longitude=67.0104&start_date=2022-01-01&end_date=2023-12-31&daily=temperature_2m_max';
+        'https://archive-api.open-meteo.com/v1/archive?latitude=$_latitude&longitude=$_longitude&start_date=2022-01-01&end_date=2023-12-31&daily=temperature_2m_max';
+    print(DateFormat('yyyy-MM-dd').format(DateTime.now()));
     final apiUrl2 =
-        'https://api.open-meteo.com/v1/forecast?latitude=$_latitude&longitude=$_longitude&current=temperature_2m';
+        'https://historical-forecast-api.open-meteo.com/v1/forecast?latitude=$_latitude&longitude=$_longitude&start_date=${DateFormat('yyyy-MM-dd').format(DateTime.now())}&end_date=${DateFormat('yyyy-MM-dd').format(DateTime.now())}&daily=temperature_2m_max';
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
@@ -68,10 +69,11 @@ class _GaussianDistributedState extends State<GaussianDistributed> {
       final response = await http.get(Uri.parse(apiUrl2));
       if (response.statusCode == 200) {
         final jsonData1 = json.decode(response.body);
-        final dynamic current = jsonData1['current']['temperature_2m'];
+        final dynamic current = jsonData1['daily']['temperature_2m_max'];
 
         setState(() {
-          _currentTemperature = current;
+          _currentTemperature = current[0];
+          print(_currentTemperature);
         });
       } else {
         throw Exception('Failed to load weather data 2');
@@ -174,7 +176,7 @@ class _GaussianDistributedState extends State<GaussianDistributed> {
                 for (int i = 0; i < 7; i++) {
                   double sum = 0.0;
                   simulatedTemperatures = runSimulations(
-                      _currentTemperature, 100, _historicalStdDev);
+                      _currentTemperature, 200, _historicalStdDev);
                   for (int j = 0; j < simulatedTemperatures.length; j++) {
                     sum += simulatedTemperatures[j];
                   }
@@ -182,7 +184,7 @@ class _GaussianDistributedState extends State<GaussianDistributed> {
                   _sevenDaysWeather.add(double.parse(
                       (sum / simulatedTemperatures.length).toStringAsFixed(2)));
                 }
-                // _dialog(_sevenDaysWeather,DateTime.now().day);
+                _dialog(_sevenDaysWeather,DateTime.now().day);
                 setState(() {
                   _temperatureHistory = _sevenDaysWeather;
                   // _sevenDaysWeather = [];
