@@ -27,8 +27,10 @@ class _GaussianDistributedState extends State<GaussianDistributed> {
     final apiUrl =
         'https://archive-api.open-meteo.com/v1/archive?latitude=$_latitude&longitude=$_longitude&start_date=2022-01-01&end_date=2023-12-31&daily=temperature_2m_max';
     print(DateFormat('yyyy-MM-dd').format(DateTime.now()));
+    final now = DateTime. now();
+    final yesterday = now. subtract(const Duration(days: 1));
     final apiUrl2 =
-        'https://historical-forecast-api.open-meteo.com/v1/forecast?latitude=$_latitude&longitude=$_longitude&start_date=${DateFormat('yyyy-MM-dd').format(DateTime.now())}&end_date=${DateFormat('yyyy-MM-dd').format(DateTime.now())}&daily=temperature_2m_max';
+        'https://historical-forecast-api.open-meteo.com/v1/forecast?latitude=$_latitude&longitude=$_longitude&start_date=${DateFormat('yyyy-MM-dd').format(yesterday)}&end_date=${DateFormat('yyyy-MM-dd').format(yesterday)}&daily=temperature_2m_max';
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
@@ -86,7 +88,7 @@ class _GaussianDistributedState extends State<GaussianDistributed> {
   final Random _random = Random();
 
   double _generateRandomNormal() {
-    double u1 = 1.0 - _random.nextDouble(); // Convert [0, 1) to (0, 1]
+    double u1 = 1.0 - _random.nextDouble();
     double u2 = 1.0 - _random.nextDouble();
     double standardNormal = sqrt(-2.0 * log(u1)) *
         cos(2.0 * pi * u2); // Standard normal distribution
@@ -175,8 +177,10 @@ class _GaussianDistributedState extends State<GaussianDistributed> {
                 _sevenDaysWeather = [];
                 for (int i = 0; i < 7; i++) {
                   double sum = 0.0;
+                  simulatedTemperatures=[];
                   simulatedTemperatures = runSimulations(
-                      _currentTemperature, 200, _historicalStdDev);
+                      _currentTemperature, 1000, _historicalStdDev);
+                  print(simulatedTemperatures);
                   for (int j = 0; j < simulatedTemperatures.length; j++) {
                     sum += simulatedTemperatures[j];
                   }
@@ -214,7 +218,7 @@ class _GaussianDistributedState extends State<GaussianDistributed> {
               Text('7 Days Weather Prediction:',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
               SizedBox(height: 20),
               for (int i = 0; i < sevenDays.length; i++)
-                Text(getDayName(dayNumber=dayNumber+1)+': \t\t\t${sevenDays[i]} °C'),
+                Text(getDayName(dayNumber++)+': \t\t\t${sevenDays[i]} °C'),
             ],
           ),
           actions: <Widget>[
