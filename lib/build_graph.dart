@@ -7,7 +7,7 @@ import 'surface_pressure_prediction.dart';
 class BuildGraphPage extends StatelessWidget {
   ApiService apiService = ApiService();
   List<double>? predictions;
-  String cityName = "Berlin";
+  String cityName = "Karachi";
 
   BuildGraphPage({required this.predictions});
 
