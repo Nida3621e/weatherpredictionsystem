@@ -146,10 +146,17 @@ class _WindSpeedForecastingState extends State<WindSpeedForecasting> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              Text(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.wind_power),
+                   Text(
                 'Current Wind Speed: ${_averageWindSpeed.toStringAsFixed(1)} km/hr',
                 style: TextStyle(fontSize: 16),
               ),
+                ],
+              ),
+             SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -166,7 +173,7 @@ class _WindSpeedForecastingState extends State<WindSpeedForecasting> {
                       children: [
                         Text(
                           'Wind Speed Prediction for Next 7 Days ',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 6, 56, 142),),
                         ),
                         SizedBox(height: 10),
                         // Check if _sevenDaysWindSpeed is not empty before building DataTable and LineChart
@@ -176,9 +183,11 @@ class _WindSpeedForecastingState extends State<WindSpeedForecasting> {
                             border: TableBorder.all(width: 1, color: Colors.grey),
                             columns: [
                               DataColumn(
-                                label: Text(
-                                  'Day',
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                label: Center(
+                                  child: Text(
+                                    'Day/Date',
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
                               DataColumn(

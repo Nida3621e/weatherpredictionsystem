@@ -144,10 +144,21 @@ class _CarloWindDirectionState extends State<CarloWindDirection> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              Text(
-                'Current Wind Direction: ${_averageWindSpeed.toStringAsFixed(1)} °',
+              // Text(
+              //   'Current Wind Direction: ${_averageWindSpeed.toStringAsFixed(1)} °',
+              //   style: TextStyle(fontSize: 16),
+              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.wind_power),
+                   Text(
+               'Current Wind Direction: ${_averageWindSpeed.toStringAsFixed(1)} °',
                 style: TextStyle(fontSize: 16),
               ),
+                ],
+              ),
+              SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -165,7 +176,8 @@ class _CarloWindDirectionState extends State<CarloWindDirection> {
                       children: [
                         Text(
                           'Wind Direction Prediction for Next 7 Days',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,   color: const Color.fromARGB(255, 6, 56, 142),),
+                         
                         ),
                         SizedBox(height: 10),
                         if (_sevenDaysWindSpeed.isNotEmpty) ...[
@@ -175,7 +187,7 @@ class _CarloWindDirectionState extends State<CarloWindDirection> {
                             columns: [
                               DataColumn(
                                 label: Text(
-                                  'Day',
+                                  'Day/Date',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                 ),
                               ),
