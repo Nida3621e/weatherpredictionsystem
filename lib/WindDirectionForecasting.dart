@@ -120,7 +120,7 @@ class _CarloWindDirectionState extends State<CarloWindDirection> {
   // Calculate the next 7 days starting from today
   void _calculateNextSevenDays() {
     DateTime now = DateTime.now();
-    for (int i = 2; i < 9; i++) {
+    for (int i = 1; i < 9; i++) {
       DateTime nextDay = now.add(Duration(days: i));
       _nextSevenDays.add(DateFormat('EEEE, MMM d').format(nextDay));  // Format the date
     }

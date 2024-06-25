@@ -90,7 +90,7 @@ class _DashboardState extends State<Dashboard> {
                         name:"Temperature",
                         materialApp: GaussianDistributed(),
                       ),Containerwidget(
-                        image: "assets/images/wind.jpg",
+                        image: "assets/images/wind.png",
                         name:"Wind speed/direction",
                         materialApp: WindSpeedForecasting(),
                       ),
@@ -102,7 +102,7 @@ class _DashboardState extends State<Dashboard> {
                     children: [
                       
                       Containerwidget(
-                        image: "assets/images/temp.png",
+                        image: "assets/images/pressure.png",
                         name:"Pressure",
                         materialApp: WeatherHomePage(),
                       ),Containerwidget(
