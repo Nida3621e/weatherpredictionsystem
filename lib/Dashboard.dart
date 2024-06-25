@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:weatherpredictionsystems/WindSpeedForecasting.dart';
 import 'dart:convert';
 
 import 'package:weatherpredictionsystems/containerWidget.dart';
@@ -85,9 +86,9 @@ class _DashboardState extends State<Dashboard> {
                         name:"Temperature",
                         materialApp: GaussianDistributed(),
                       ),Containerwidget(
-                        image: "assets/images/temp.png",
+                        image: "assets/images/wind.jpg",
                         name:"Wind speed/direction",
-                        materialApp: NormalDistributed(),
+                        materialApp: WindSpeedForecasting(),
                       ),
                     ],
                   ),
