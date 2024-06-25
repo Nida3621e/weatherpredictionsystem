@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weatherpredictionsystems/Dashboard.dart';
 import 'package:weatherpredictionsystems/gaussianDistributed.dart';
+import 'package:weatherpredictionsystems/splash.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Dashboard(),
+      home: SplashScreen(),
     );
   }
 }
